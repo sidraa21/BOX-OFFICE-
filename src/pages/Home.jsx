@@ -1,53 +1,47 @@
-import { useState } from "react";
+import { useState } from 'react';
 //import { Link } from "react-router-dom";
-import { searchForShows } from "../api/tvmaze";
+import { searchForShows } from '../api/tvmaze';
 
 const Home = () => {
-
-  const [searchStr, setSearchStr] = useState("");
-   const [apiData , setApiData] = useState(null);
-   const [apiDataError, setApiDataError] = useState(null);
+  const [searchStr, setSearchStr] = useState('');
+  const [apiData, setApiData] = useState(null);
+  const [apiDataError, setApiDataError] = useState(null);
   console.log(apiDataError);
-   const onSearchInputChange = (ev) => {
+  const onSearchInputChange = ev => {
     setSearchStr(ev.target.value);
   };
 
-  const onSearch = async (ev) => {
-ev.preventDefault();
-try{
-    setApiDataError(null);
-    const result = await searchForShows(searchStr);
-    setApiData(result);
-} catch (error) {
+  const onSearch = async ev => {
+    ev.preventDefault();
+    try {
+      setApiDataError(null);
+      const result = await searchForShows(searchStr);
+      setApiData(result);
+    } catch (error) {
       setApiDataError(error);
-}
-  
-
+    }
   };
 
   const renderApiData = () => {
-
-    if(apiDataError){
-        return <div>Error occurred : {apiDataError.message}</div>;
+    if (apiDataError) {
+      return <div>Error occurred : {apiDataError.message}</div>;
     }
-    if(apiData) {
-        return apiData.map((data) => (
-            <div key={data.show.id} > {data.show.name}</div>
-            ));
-        }
-       return null;
-    };
-  
-return  (
+    if (apiData) {
+      return apiData.map(data => (
+        <div key={data.show.id}> {data.show.name}</div>
+      ));
+    }
+    return null;
+  };
+
+  return (
     <div>
-         <form onSubmit={onSearch}>
-       <input type="text" value={searchStr} onChange={onSearchInputChange} />
-       <button
-        type="submit">Search </button>
-        </form>
-        <div>
-            {renderApiData()} </div>
+      <form onSubmit={onSearch}>
+        <input type="text" value={searchStr} onChange={onSearchInputChange} />
+        <button type="submit">Search </button>
+      </form>
+      <div>{renderApiData()} </div>
     </div>
-    );
-            };
-            export default Home ;
+  );
+};
+export default Home;
