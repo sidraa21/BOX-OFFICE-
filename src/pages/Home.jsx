@@ -2,6 +2,8 @@ import { useState } from 'react';
 //import { Link } from "react-router-dom";
 import { searchForShows ,searchForPeople } from '../api/tvmaze';
 import SearchForm from '../components/SearchForm';
+import ShowGrid from '../components/shows/ShowGrid';
+import ActorsGrid from '../components/actors/ActorsGrid';
 const Home = () => {
  
   const [apiData, setApiData] = useState(null);
@@ -30,20 +32,23 @@ const Home = () => {
     if (apiDataError) {
       return <div>Error occurred : {apiDataError.message}</div>;
     }
+
+    if(apiData?.length === 0){
+      return <div>No Results</div>
+    }
     if (apiData) {
       return  apiData[0].show
-       ? apiData.map(data =>  <div key={data.show.id}>{data.show.name}</div>)
-      : apiData.map(data => ( 
-      <div key={data.person.id}>{data.person.name}</div>
-       ));
+       ? ( <ShowGrid shows={apiData}/> )
+       :( <ActorsGrid actors={apiData}/>
+       );
     }
     return null;
   };
       
   return (
-    <div>
+    <div> 
           <SearchForm onSearch= {onSearch}/>
-    {/*
+    {/*     
       <form onSubmit={onSearch}>
         <input type="text" value={searchStr} onChange={onSearchInputChange} />
         <label>
