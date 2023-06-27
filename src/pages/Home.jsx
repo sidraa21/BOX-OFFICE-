@@ -1,19 +1,29 @@
 import { useState } from 'react';
 //import { Link } from "react-router-dom";
+import { useQuery } from '@tanstack/react-query';
 import { searchForShows ,searchForPeople } from '../api/tvmaze';
 import SearchForm from '../components/SearchForm';
 import ShowGrid from '../components/shows/ShowGrid';
 import ActorsGrid from '../components/actors/ActorsGrid';
 const Home = () => {
+  const [filter, setFilter] = useState(null)
+
+  const { data: apiData , error: apiDataError} = useQuery({
+      queryKey: ['search', filter],
+      queryFn: () => filter.searchOption === 'shows' ? searchForShows(filter.q) : searchForPeople(filter.q),
+      // ⬇️ disabled as long as the filter is empty
+      enabled: !!filter,
+      refetchOnWindowFocus: false,
+  });
  
-  const [apiData, setApiData] = useState(null);
-  const [apiDataError, setApiDataError] = useState(null);
+  //const [apiData, setApiData] = useState(null);
+  //const [apiDataError, setApiDataError] = useState(null);
   
   //console.log(searchOption);
   
   const onSearch = async ({q, searchOption}) => {
    // ev.preventDefault();
-    try {
+   /* try {
       setApiDataError(null);
       let result;
       if(searchOption === 'shows'){
@@ -25,7 +35,7 @@ const Home = () => {
       }
     } catch (error) {
       setApiDataError(error);
-    }
+    } */
   };
 
   const renderApiData = () => {
