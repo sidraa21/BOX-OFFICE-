@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/starred" element={<div>Starred</div>} />
+          <Route path="/starred" element={<Starred />} />
         </Route>
         <Route path = "/show/:showId" element={<Show />} />
         <Route path="*" element={<div>Not found</div>} />
