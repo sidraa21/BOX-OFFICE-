@@ -5,9 +5,42 @@ import { searchForShows ,searchForPeople } from '../api/tvmaze';
 import SearchForm from '../components/SearchForm';
 import ShowGrid from '../components/shows/ShowGrid';
 import ActorsGrid from '../components/actors/ActorsGrid';
+import styled , { css ,ThemeProvider } from 'styled-components' ;
+ 
+
+const theme = {
+  colors: {
+      main: 'red',
+  },
+};
+const Container = styled.div`
+  text-align: center;
+`
+
+const Button = styled.button`
+  background: transparent;
+  border-radius: 3px;
+  border: 2px solid #BF4F74;
+  color: ${(props) => props.theme.colors.main};
+  margin: 0 1em;
+  padding: 0.25em 1em;
+
+
+  ${props =>
+    props.primary &&
+    css`
+      background: '#BF4F74';
+      color: green;
+    `};
 
 
 
+${props =>
+  props.$fontSize &&
+  css`
+    font-size: ${props.$fontSize}px;
+  `};
+`;
 const Home = () => {
   const [filter, setFilter] = useState(null);
  
@@ -45,22 +78,19 @@ const Home = () => {
       
   return (
     <div> 
+      <ThemeProvider theme={theme}>
+  
+      <Container>
+      <Button type="button">
+        hello</Button>
+      <Button type="button" $fontSize={20}>
+        hello
+        </Button>
+        </Container>
+        </ThemeProvider>
           <SearchForm onSearch= {onSearch}/>
     
-    {/*     
-      <form onSubmit={onSearch}>
-        <input type="text" value={searchStr} onChange={onSearchInputChange} />
-        <label>
-          Shows 
-          <input type="radio" name="search-option" value="shows" checked={searchOption === 'shows'} onChange={onRadioChange}/>
-        </label>
 
-        <label>
-          Actors
-          <input type="radio" name="search-option" value="actors" checked={searchOption === 'actors'} onChange={onRadioChange} />
-        </label>
-        <button type="submit">Search </button>
-  </form> */}
       <div>{renderApiData()} </div>
     </div>
   );
