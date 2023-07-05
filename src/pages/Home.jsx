@@ -5,10 +5,10 @@ import { searchForShows ,searchForPeople } from '../api/tvmaze';
 import SearchForm from '../components/SearchForm';
 import ShowGrid from '../components/shows/ShowGrid';
 import ActorsGrid from '../components/actors/ActorsGrid';
-import styled , { css ,ThemeProvider } from 'styled-components' ;
+//import styled , { css ,ThemeProvider } from 'styled-components' ;
  
 
-const theme = {
+/*const theme = {
   colors: {
       main: 'red',
   },
@@ -41,6 +41,7 @@ ${props =>
     font-size: ${props.$fontSize}px;
   `};
 `;
+*/
 const Home = () => {
   const [filter, setFilter] = useState(null);
  
@@ -78,16 +79,7 @@ const Home = () => {
       
   return (
     <div> 
-      <ThemeProvider theme={theme}>
-  
-      <Container>
-      <Button type="button">
-        hello</Button>
-      <Button type="button" $fontSize={20}>
-        hello
-        </Button>
-        </Container>
-        </ThemeProvider>
+
           <SearchForm onSearch= {onSearch}/>
     
 
