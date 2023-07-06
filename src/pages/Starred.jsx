@@ -3,6 +3,7 @@ import { useStarredShows } from "../lib/useStarredShows";
 import { getShowByIds } from "../api/tvmaze";
 import ShowGrid from "../components/shows/ShowGrid";
 import { TextCenter } from "../components/common/TextCenter";
+
 const Starred = () => {
   const [starredShowsIds] = useStarredShows();
   const { data: starredShows, error: starredShowsError} = useQuery({

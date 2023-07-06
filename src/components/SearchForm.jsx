@@ -27,7 +27,7 @@ const SearchForm = ({onSearch}) => {
     return (
     <form onSubmit={onSubmit}>
         <SearchInput type="text"
-        placeholder='Search what u need' 
+        placeholder='Search here' 
         value={searchStr} onChange={onSearchInputChange} />
 <RadiosWrapper>
         <CustomRadio

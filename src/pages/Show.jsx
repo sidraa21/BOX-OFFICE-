@@ -48,9 +48,8 @@ refetchOnWindowFocus : false,
         return (
             <ShowPageWrapper>
             <BackHomeWrapper>
-         <Link to= "/">Go bck to home</Link>
+         <Link to= "/">Go back to home</Link>
               </BackHomeWrapper>
-          
             <ShowMainData image={showData.image} name={showData.name} rating={showData.rating} summary={showData.summary} genres={showData.genres} />
             <InfoBlock>
                 <h2>Details</h2>
