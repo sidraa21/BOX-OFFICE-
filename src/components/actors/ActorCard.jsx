@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import { Link } from "react-router-dom";
 import { SearchCard, SearchImgWrapper } from "../common/SearchCard";
 const ActorCard = ({name , image ,gender,country, birthday ,deathday}) => {

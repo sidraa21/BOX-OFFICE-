@@ -1,5 +1,7 @@
 import { Link  ,useParams } from 'react-router-dom';
+// eslint-disable-next-line
 import { useEffect, useState } from 'react';
+
 import { getShowById } from '../api/tvmaze';
 import { useQuery } from  '@tanstack/react-query';
 import ShowMainData from '../components/shows/ShowMainData';
